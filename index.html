@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charge Calculator</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            background-color: var(--tg-theme-secondary-bg-color, #f5f5f5);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--tg-theme-hint-color, #ccc);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--tg-theme-button-color, #3390ec);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:active {
+            opacity: 0.7;
+        }
+
+        .btn-primary {
+            background-color: var(--tg-theme-button-color, #3390ec);
+            color: var(--tg-theme-button-text-color, #ffffff);
+        }
+
+        .btn-secondary {
+            background-color: var(--tg-theme-secondary-bg-color, #e0e0e0);
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 16px;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .result-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #3390ec);
+            margin-bottom: 8px;
+        }
+
+        .result-details {
+            font-size: 14px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .saved-message {
+            margin-top: 12px;
+            padding: 8px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+
+        .saved-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ EV Charge Calculator</h1>
+        
+        <div class="form-group">
+            <label for="capacity">Battery Capacity (kWh)</label>
+            <input type="number" id="capacity" placeholder="e.g., 75" step="0.1" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="usable">Usable Capacity (%)</label>
+            <input type="number" id="usable" placeholder="e.g., 90" value="90" step="1" min="0" max="100">
+        </div>
+
+        <div class="form-group">
+            <label for="current">Current Charge (%)</label>
+            <input type="number" id="current" placeholder="e.g., 20" step="1" min="0" max="100">
+        </div>
+
+        <div class="form-group">
+            <label for="target">Target Charge (%)</label>
+            <input type="number" id="target" placeholder="e.g., 80" step="1" min="0" max="100">
+        </div>
+
+        <div class="button-group">
+            <button class="btn-primary" onclick="calculate()">Calculate</button>
+            <button class="btn-secondary" onclick="savePresets()">Save Presets</button>
+        </div>
+
+        <div class="saved-message" id="savedMessage">✓ Presets saved successfully!</div>
+
+        <div class="result" id="result">
+            <h2>Required Charge</h2>
+            <div class="result-value" id="resultValue">0.0 kWh</div>
+            <div class="result-details" id="resultDetails"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Telegram WebApp
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.ready();
+
+        // Apply Telegram theme
+        document.body.style.backgroundColor = tg.themeParams.bg_color || '#ffffff';
+
+        // Load saved presets from Cloud Storage
+        if (tg.CloudStorage) {
+            tg.CloudStorage.getItem('carSpecs', function(err, value) {
+                if (!err && value) {
+                    try {
+                        const specs = JSON.parse(value);
+                        if (specs.capacity) document.getElementById('capacity').value = specs.capacity;
+                        if (specs.usablePercent) document.getElementById('usable').value = specs.usablePercent;
+                    } catch (e) {
+                        console.error('Error loading saved presets:', e);
+                    }
+                }
+            });
+        }
+
+        function calculate() {
+            const capacity = parseFloat(document.getElementById('capacity').value);
+            const usablePercent = parseFloat(document.getElementById('usable').value);
+            const current = parseFloat(document.getElementById('current').value);
+            const target = parseFloat(document.getElementById('target').value);
+
+            // Validation
+            if (!capacity || !usablePercent || isNaN(current) || isNaN(target)) {
+                tg.showAlert('Please fill in all fields with valid numbers');
+                return;
+            }
+
+            if (current < 0 || current > 100 || target < 0 || target > 100) {
+                tg.showAlert('Charge percentages must be between 0 and 100');
+                return;
+            }
+
+            if (target <= current) {
+                tg.showAlert('Target charge must be greater than current charge');
+                return;
+            }
+
+            // Calculate usable capacity
+            const usableCapacity = capacity * (usablePercent / 100);
+
+            // Calculate required charge
+            const chargeDifference = target - current;
+            const requiredKWh = (chargeDifference / 100) * usableCapacity;
+
+            // Display result
+            document.getElementById('resultValue').textContent = requiredKWh.toFixed(2) + ' kWh';
+            document.getElementById('resultDetails').innerHTML = `
+                Usable capacity: ${usableCapacity.toFixed(2)} kWh<br>
+                Charging from ${current}% to ${target}% (${chargeDifference}%)
+            `;
+            document.getElementById('result').classList.add('show');
+
+            // Haptic feedback
+            if (tg.HapticFeedback) {
+                tg.HapticFeedback.notificationOccurred('success');
+            }
+        }
+
+        function savePresets() {
+            const capacity = parseFloat(document.getElementById('capacity').value);
+            const usablePercent = parseFloat(document.getElementById('usable').value);
+
+            if (!capacity || !usablePercent) {
+                tg.showAlert('Please enter battery capacity and usable capacity first');
+                return;
+            }
+
+            const specs = {
+                capacity: capacity,
+                usablePercent: usablePercent
+            };
+
+            if (tg.CloudStorage) {
+                tg.CloudStorage.setItem('carSpecs', JSON.stringify(specs), function(err, success) {
+                    if (!err && success) {
+                        const message = document.getElementById('savedMessage');
+                        message.classList.add('show');
+                        setTimeout(() => {
+                            message.classList.remove('show');
+                        }, 2000);
+
+                        if (tg.HapticFeedback) {
+                            tg.HapticFeedback.notificationOccurred('success');
+                        }
+                    } else {
+                        tg.showAlert('Failed to save presets');
+                    }
+                });
+            } else {
+                tg.showAlert('Cloud Storage is not available');
+            }
+        }
+
+        // Allow Enter key to trigger calculation
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculate();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
