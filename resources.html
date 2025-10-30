@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-VFFJE5E6D4"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-VFFJE5E6D4");
+		</script>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>VW ID.4 / ID.6 — Ресурсы</title>
+		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+					Roboto, Helvetica, Arial, sans-serif;
+				background-color: var(--tg-theme-bg-color, #ffffff);
+				color: var(--tg-theme-text-color, #000000);
+				padding: 20px;
+				max-width: 600px;
+				margin: 0 auto;
+				padding-bottom: 40px;
+			}
+
+			.back-button {
+				margin-bottom: 20px;
+			}
+
+			.back-button a {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				padding: 8px 12px;
+				background-color: var(--tg-theme-secondary-bg-color, #f5f5f5);
+				color: var(--tg-theme-text-color, #000000);
+				text-decoration: none;
+				border-radius: 8px;
+				font-size: 15px;
+				transition: opacity 0.2s ease;
+			}
+
+			.back-button a:active {
+				opacity: 0.7;
+			}
+
+			h1 {
+				font-size: 24px;
+				margin-bottom: 8px;
+				color: var(--tg-theme-text-color, #000000);
+			}
+
+			.subtitle {
+				font-size: 15px;
+				color: var(--tg-theme-hint-color, #999999);
+				margin-bottom: 24px;
+			}
+
+			.resource-card {
+				background-color: var(--tg-theme-secondary-bg-color, #f5f5f5);
+				border-radius: 12px;
+				padding: 20px;
+				margin-bottom: 16px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.resource-card h2 {
+				font-size: 18px;
+				margin-bottom: 12px;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				color: var(--tg-theme-text-color, #000000);
+			}
+
+			.resource-info {
+				background-color: var(--tg-theme-bg-color, #ffffff);
+				padding: 12px;
+				border-radius: 8px;
+				margin-bottom: 12px;
+				font-size: 15px;
+				line-height: 1.5;
+			}
+
+			.resource-info strong {
+				color: var(--tg-theme-text-color, #000000);
+			}
+
+			.link-buttons {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			}
+
+			.link-buttons a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				padding: 12px 16px;
+				background-color: var(--tg-theme-button-color, #3390ec);
+				color: var(--tg-theme-button-text-color, #ffffff);
+				text-decoration: none;
+				border-radius: 8px;
+				font-size: 15px;
+				font-weight: 500;
+				transition: opacity 0.2s ease;
+			}
+
+			.link-buttons a:active {
+				opacity: 0.8;
+			}
+
+			.link-buttons a.secondary {
+				background-color: var(--tg-theme-bg-color, #ffffff);
+				color: var(--tg-theme-link-color, #3390ec);
+				border: 1px solid var(--tg-theme-hint-color, #ccc);
+			}
+
+			.app-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+				gap: 16px;
+				margin-top: 12px;
+			}
+
+			.app-item {
+				text-align: center;
+			}
+
+			.app-item a {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-decoration: none;
+				color: var(--tg-theme-text-color, #000000);
+			}
+
+			.app-icon {
+				width: 64px;
+				height: 64px;
+				background-color: var(--tg-theme-bg-color, #ffffff);
+				border-radius: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 36px;
+				margin-bottom: 8px;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+				overflow: hidden;
+			}
+
+			.app-icon img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.app-name {
+				font-size: 12px;
+				line-height: 1.3;
+				color: var(--tg-theme-text-color, #000000);
+			}
+
+			.app-item a:active .app-icon {
+				opacity: 0.7;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="back-button">
+			<a href="index.html">← Назад к калькулятору</a>
+		</div>
+
+		<h1>🚗 VW ID.4 / ID.6</h1>
+		<div class="subtitle">Полезная информация для владельцев</div>
+
+		<!-- Key Battery -->
+		<div class="resource-card">
+			<h2>🔋 Батарейка для ключа</h2>
+			<div class="resource-info"><strong>Модель:</strong> CR3032</div>
+			<div class="link-buttons">
+				<a
+					href="https://youtu.be/QYdcGku-FEM?si=txkDyqpuAacMxHID"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					📺 Видео инструкция
+				</a>
+				<a
+					href="https://l.kaspi.kz/shp/7Pzp4IKM_76"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="secondary"
+				>
+					🛒 Купить на Kaspi.kz
+				</a>
+			</div>
+		</div>
+
+		<!-- Windshield Wipers -->
+		<div class="resource-card">
+			<h2>🧹 Дворники</h2>
+			<div class="resource-info">
+				<strong>Передние:</strong> 700мм + 450мм<br />
+				<strong>Тип крепления:</strong> Narrow push button
+			</div>
+			<div class="link-buttons">
+				<a
+					href="https://l.kaspi.kz/shp/7J6Q6H9fIG8"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					🛒 Kaspi.kz
+				</a>
+				<a
+					href="https://avtodvorniki.kz/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="secondary"
+				>
+					🔧 Avtodvorniki.kz
+				</a>
+			</div>
+		</div>
+
+		<!-- Air Filter -->
+		<div class="resource-card">
+			<h2>🌬️ Воздушный фильтр салона</h2>
+			<div class="resource-info">
+				<strong>Оригинал:</strong> 5Q0819653 / 5Q0819644<br />
+				<strong>Совместимые:</strong> MAHLE LA1854, MANN SP 1059-2<br />
+				<strong>Примечание:</strong> Угольный фильтр (с активированным
+				углем)
+			</div>
+			<div class="link-buttons">
+				<a
+					href="https://youtu.be/tshjnlR3v14?si=qIkZ6BcSsmyAz3-y"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					📺 Видео инструкция
+				</a>
+				<a
+					href="https://kaspi.kz/shop/search/?text=%D1%84%D0%B8%D0%BB%D1%8C%D1%82%D1%80%2B%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%D0%B0%2BVW%2BID.4&q=%3AavailableInZones%3AMagnum_ZONE5%3Acategory%3ACar%20filters%3AReplacement%20parts*Car%20brand%3AVolkswagen%3AReplacement%20parts*Car%20model%3AID4%3ACar%20filters*Type%3A%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9%20%D1%84%D0%B8%D0%BB%D1%8C%D1%82%D1%80&sort=relevance&filteredByCategory=false&sc="
+					target="_blank"
+					rel="noopener noreferrer"
+					class="secondary"
+				>
+					🔍 Аналоги на Kaspi.kz
+				</a>
+			</div>
+		</div>
+
+		<!-- iPhone Apps -->
+		<div class="resource-card">
+			<h2>📱 Полезные приложения (iPhone)</h2>
+			<div class="app-grid">
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id6503088473"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9c/77/44/9c7744b6-33fa-9261-f661-1a12cedfadb4/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/1200x630wa.png"
+								alt="evPoint.kz"
+							/>
+						</div>
+						<div class="app-name">evPoint.kz</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id1527733098"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/c7/c5/4c/c7c54cec-0228-b131-2559-2dcb7287695f/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png"
+								alt="Vlife"
+							/>
+						</div>
+						<div class="app-name">Vlife</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id6471661658"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2f/53/f2/2f53f224-5be2-8c6b-4123-c3ca789c4ea5/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/1200x630wa.png"
+								alt="eDrive KZ"
+							/>
+						</div>
+						<div class="app-name">eDrive.kz</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id6474143427"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/88/65/41/8865419e-97a1-9868-6c67-13b4bcc935c8/AppIcon-0-0-1x_U007epad-0-85-220.png/1200x630wa.png"
+								alt="GreenCars"
+							/>
+						</div>
+						<div class="app-name">GreenCars</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id6547835582"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/24/82/24248215-e520-7e8b-fe6f-aef289a9ea21/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/1200x630wa.png"
+								alt="MyCharge"
+							/>
+						</div>
+						<div class="app-name">Mycharge.kz</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id6472589457"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/39/6d/8a/396d8a7f-848b-c33f-6d45-c4aaace47419/AppIcon-0-0-1x_U007ephone-0-1-0-P3-85-220.png/1200x630wa.png"
+								alt="Power HUB"
+							/>
+						</div>
+						<div class="app-name">Power HUB</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://apps.apple.com/app/id6451469541"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b3/98/5c/b3985c38-fbc4-5164-4ce6-0a8a5c25b57e/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/1200x630wa.png"
+								alt="EVS.kz"
+							/>
+						</div>
+						<div class="app-name">EVS</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Android Apps -->
+		<div class="resource-card">
+			<h2>🤖 Полезные приложения (Android)</h2>
+			<div class="app-grid">
+				<div class="app-item">
+					<a
+						href="https://play.google.com/store/apps/details?id=kz.mobdev.evchargers"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9c/77/44/9c7744b6-33fa-9261-f661-1a12cedfadb4/AppIcon-0-1x_U007epad-0-1-0-85-220-0.png/1200x630wa.png"
+								alt="evPoint.kz"
+							/>
+						</div>
+						<div class="app-name">evPoint.kz</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://play.google.com/store/apps/details?id=kz.vlife.grandera"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/c7/c5/4c/c7c54cec-0228-b131-2559-2dcb7287695f/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/1200x630wa.png"
+								alt="Vlife"
+							/>
+						</div>
+						<div class="app-name">Vlife</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://play.google.com/store/apps/details?id=kz.edrive.pwa"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2f/53/f2/2f53f224-5be2-8c6b-4123-c3ca789c4ea5/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/1200x630wa.png"
+								alt="eDrive.kz"
+							/>
+						</div>
+						<div class="app-name">eDrive.kz</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://play.google.com/store/apps/details?id=kz.astanamotors.mycharge"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/24/24/82/24248215-e520-7e8b-fe6f-aef289a9ea21/AppIcon-0-0-1x_U007ephone-0-11-0-85-220.png/1200x630wa.png"
+								alt="MyCharge"
+							/>
+						</div>
+						<div class="app-name">MyCharge</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://play.google.com/store/apps/details?id=hub.power.futureapp"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/39/6d/8a/396d8a7f-848b-c33f-6d45-c4aaace47419/AppIcon-0-0-1x_U007ephone-0-1-0-P3-85-220.png/1200x630wa.png"
+								alt="Power HUB"
+							/>
+						</div>
+						<div class="app-name">Power HUB</div>
+					</a>
+				</div>
+				<div class="app-item">
+					<a
+						href="https://play.google.com/store/apps/details?id=kz.evs.ccms"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<div class="app-icon">
+							<img
+								src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b3/98/5c/b3985c38-fbc4-5164-4ce6-0a8a5c25b57e/AppIcon-1x_U007emarketing-0-7-0-85-220-0.png/1200x630wa.png"
+								alt="EVS"
+							/>
+						</div>
+						<div class="app-name">EVS</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// Initialize Telegram WebApp
+			let tg = window.Telegram.WebApp;
+			tg.expand();
+			tg.ready();
+
+			// Apply Telegram theme
+			document.body.style.backgroundColor =
+				tg.themeParams.bg_color || "#ffffff";
+
+			// Enable BackButton in Telegram
+			if (tg.BackButton) {
+				tg.BackButton.show();
+				tg.BackButton.onClick(function () {
+					window.location.href = "index.html";
+				});
+			}
+		</script>
+	</body>
+</html>

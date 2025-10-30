@@ -144,6 +144,31 @@
 			.error-message.show {
 				opacity: 1;
 			}
+
+			.vw-link {
+				margin-top: 24px;
+				text-align: center;
+				padding: 16px;
+			}
+
+			.vw-link a {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 12px 20px;
+				background-color: var(--tg-theme-bg-color, #ffffff);
+				color: var(--tg-theme-link-color, #3390ec);
+				text-decoration: none;
+				border-radius: 8px;
+				font-size: 16px;
+				font-weight: 500;
+				border: 1px solid var(--tg-theme-hint-color, #ccc);
+				transition: all 0.2s ease;
+			}
+
+			.vw-link a:active {
+				opacity: 0.7;
+			}
 		</style>
 	</head>
 	<body>
@@ -212,6 +237,12 @@
 				<div class="result-value" id="resultValue">0.0 кВтч</div>
 				<div class="result-details" id="resultDetails"></div>
 			</div>
+		</div>
+
+		<div class="vw-link">
+			<a href="resources.html">
+				🚗 VW ID.4 / ID.6 — Полезная информация
+			</a>
 		</div>
 
 		<script>
